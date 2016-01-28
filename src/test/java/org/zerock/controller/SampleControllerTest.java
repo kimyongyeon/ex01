@@ -1,6 +1,9 @@
 package org.zerock.controller;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,9 +14,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.validation.Errors;
 import org.springframework.web.context.WebApplicationContext;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -28,6 +32,10 @@ public class SampleControllerTest {
 	
 	private MockMvc mockMvc;
 	
+	@NotNull
+	@Size(min=5, max=6)
+	private String name;
+	
 	@Before
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
@@ -35,7 +43,8 @@ public class SampleControllerTest {
 	
 	@Test
 	public void testDoA() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/doC?msg=1234"));
+		
+		//mockMvc.perform(MockMvcRequestBuilders.get("/board/listAll"));
 	}
 
 }

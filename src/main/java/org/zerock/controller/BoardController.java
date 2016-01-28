@@ -1,11 +1,13 @@
 package org.zerock.controller;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,8 +34,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public String registPOST(BoardVO board, Model model, RedirectAttributes rttr) throws Exception {
+	public String registPOST(@Valid BoardVO board, Model model
+			, RedirectAttributes rttr
+			, Errors errors) throws Exception {
 		logger.info("regist post.....");
+		
+		if (errors.hasErrors()) {
+			return "/register";
+		}
 		
 		logger.info(board.toString());
 		
