@@ -27,7 +27,7 @@ public class BoardDAOTest {
 		board.setTitle("새로운 글을 넣습니다.");
 		board.setContent("새로운 내용을 넣습니다.");
 		board.setWriter("user00");
-//		dao.create(board);
+		dao.create(board);
 	}
 	
 	@Test
@@ -46,7 +46,7 @@ public class BoardDAOTest {
 	
 	@Test
 	public void testDelete() throws Exception {
-		dao.delete(1);
+		//dao.delete(1);
 	}
 
 }

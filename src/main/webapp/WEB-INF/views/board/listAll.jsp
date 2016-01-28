@@ -29,6 +29,9 @@
 					</tr>
 				</c:forEach>
 			</table>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary" id="btnWrite">새글쓰기</button>
+            </div>
 		</div>
 	</div>
 </div>
@@ -39,6 +42,15 @@
 	if (result == 'success') {
 		alert("처리가 완료 되었습니다.");
 	}
+
+    $(document).ready(function() {
+        var formObj = $("form[role='form']");
+        console.log(formObj);
+        $("#btnWrite").on("click", function() {
+            self.location = "/board/register";
+        });
+    });
+
 </script>
 
 <%@include file="../include/footer.jsp"%>

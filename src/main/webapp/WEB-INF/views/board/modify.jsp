@@ -16,26 +16,26 @@
 
 				<div class="box-body">
 					<div class="form-group">
-						<label for="exampleInputEmail1">Bno</label> <input type="text"
-							name='title' class='form-control' value='${boardVO.bno}'
+						<label for="bno">Bno</label> <input type="text"
+							name='bno' id="bno" class='form-control' value='${boardVO.bno}'
 							readonly="readonly" />
 					</div>
 					
 					<div class="form-group">
-						<label for="exampleInputEmail1">Title</label> <input type="text"
-							name='title' class='form-control' value='${boardVO.title}'
+						<label for="title">Title</label> <input type="text"
+							name='title' id="title" class='form-control' value='${boardVO.title}'
 							 />
 					</div>
 
 					<div class="form-group">
-						<label for="exampleInputPassword1">Content</label>
-						<textarea name="content" id="" rows="3" class="form-control"
+						<label for="content">Content</label>
+						<textarea name="content" id="content" rows="3" class="form-control"
 							>${boardVO.content }</textarea>
 					</div>
 
 					<div class="form-group">
-						<label for="exampleInputWriter">Writer</label> <input type="text"
-							name="writer" class="form-control" value="${boardVO.writer }"
+						<label for="writer">Writer</label> <input type="text"
+							name="writer" id="writer" class="form-control" value="${boardVO.writer }"
 							 />
 					</div>
 
