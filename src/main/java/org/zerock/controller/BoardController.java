@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
+import org.zerock.domain.PageMaker;
 import org.zerock.service.BoardService;
 
 import javax.inject.Inject;
@@ -43,9 +45,9 @@ public class BoardController {
 
         logger.info("register post.....");
 
-        logger.error("title : {}", board.getTitle());
-        logger.debug("content : {}", board.getContent());
-        logger.info("writer : {}", board.getWriter());
+        logger.info("1.title : {}", board.getTitle());
+        logger.info("2.content : {}", board.getContent());
+        logger.info("3.writer : {}", board.getWriter());
 
         if (result.hasErrors()) {
             return "/board/register";
@@ -69,7 +71,7 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/read", method = RequestMethod.GET)
-    public void read(@RequestParam("bno") int bno, Model model) throws Exception {
+    public void read(@RequestParam("bno") int bno, ModelMap model) throws Exception {
         model.addAttribute(service.read(bno));
     }
 
@@ -96,6 +98,25 @@ public class BoardController {
         service.modify(board);
         rttr.addFlashAttribute("msg", "success");
         return "redirect:/board/listAll";
+    }
+
+    @RequestMapping(value = "listCri", method = RequestMethod.GET)
+    public void listCri(Criteria cri, Model model) throws Exception{
+        logger.info("show list Page with Criteria....................");
+
+        model.addAttribute("list", service.listCriteria(cri));
+    }
+
+    @RequestMapping(value = "listPage", method = RequestMethod.GET)
+    public void listPage(Criteria cri, Model model) throws Exception{
+        logger.info(cri.toString());
+
+        model.addAttribute("list", service.listCriteria(cri));
+        PageMaker pageMaker = new PageMaker();
+        pageMaker.setCri(cri);
+        pageMaker.setTotalCount(131);
+
+        model.addAttribute("pageMaker", pageMaker);
     }
 
 

@@ -12,7 +12,7 @@
                 <a href="/board/register" class="list-group-item">
                     등록
                 </a>
-                <a href="/board/listAll" class="list-group-item">목록</a>
+                <a href="/board/listPage" class="list-group-item">목록</a>
             </div>
         </div>
     </div>
