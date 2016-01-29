@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <configuration>
-	<include resource="org/springframework/boot/logging/logback/base.xml" />
-	
-	<!-- log4jdbc-log4j2 -->
-	<logger name="jdbc.sqlonly" level="DEBUG" />
-	<logger name="jdbc.sqltiming" level="INFO" />
-	<logger name="jdbc.audit" level="WARN" />
-	<logger name="jdbc.resultset" level="ERROR" />
-	<logger name="jdbc.resultsettable" level="ERROR" />
-	<logger name="jdbc.connection" level="INFO" />
-	
+
+    <!-- Appenders -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %5p [%c] %m%n</pattern>
+            <!-- <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern> -->
+            <!-- <pattern>[%d] [%-5level] %-30([%thread]) %logger{100} \(%file:%line\) - %msg%n</pattern>  -->
+            <!-- <pattern>[%d] [%-5level] %-30([%thread]) %logger{50} \(%file:%line\) - %msg%n</pattern> -->
+        </encoder>
+    </appender>
+
+    <!-- Query Loggers -->
+    <logger name="org.apache.commons" level="warn" />
+    <logger name="org.springframework" level="warn" />
+    <logger name="jdbc.sqlonly" level="info" />
+
+    <logger name="jdbc.connection" level="warn"  />
+
+    <logger name="jdbc.audit" level="warn"  />
+
+    <logger name="jdbc.sqlonly" level="warn"  />
+
+    <logger name="jdbc.sqltiming" level="info"  />
+
+    <logger name="jdbc.resultset" level="warn"  />
+
+    <logger name="jdbc.resultsettable" level="info"  />
+
+    <!-- Root Logger -->
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+
 </configuration>

@@ -10,7 +10,7 @@
 	<div class="col-md-12">
 		<div class="box">
 		
-		<h4 style='margin-left:10px;'>LIST ALL PAGE</h4>
+		<h4 style='margin-left:10px;'>상세보기</h4>
 			
 			<form role="form" method="post">
 				<input type="hidden" name="bno" value="${boardVO.bno}" />
@@ -35,9 +35,9 @@
 			</div>
 			
 			<div class="box-footer">
-				<button type="submit" class="btn btn-warning">Modify</button>
-				<button type="submit" class="btn btn-danger">REMOVE</button>
-				<button type="submit" class="btn btn-primary">LIST ALL</button>
+				<button type="submit" class="btn btn-warning">수정</button>
+				<button type="submit" class="btn btn-danger">삭제</button>
+				<button type="submit" class="btn btn-primary">목록</button>
 			</div>
 			
 		</div>

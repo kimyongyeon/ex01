@@ -9,7 +9,6 @@
 <div class="row"  style="padding:10px;">
 	<div class="col-md-12">
 		<div class="box">
-		<h4 style='margin-left:10px;'>LIST ALL PAGE</h4>
 			<table class="table table-bordered">
 				<tr>
 					<th style="width: 10px;">BNO</th>

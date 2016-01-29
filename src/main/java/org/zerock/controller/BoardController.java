@@ -2,10 +2,15 @@ package org.zerock.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.config.CacheManagementConfigUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,11 +21,8 @@ import org.zerock.service.BoardService;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
-//import org.springframework.validation.BindingResult;
-
-
 @Controller
-@RequestMapping("/board/*")
+@RequestMapping("/board")
 public class BoardController {
 
     @Inject
@@ -28,19 +30,22 @@ public class BoardController {
 
     private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
-    @Inject
-    private BoardService serivce;
-
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public void registerGET() throws Exception {
+    public void registerGET(@ModelAttribute("commandNameBoard") BoardVO board) throws Exception {
+
         logger.info("register get ....");
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String registerPOST(BoardVO board, Model model
+    public String registerPOST(@Valid @ModelAttribute("commandNameBoard") BoardVO board, BindingResult result, ModelMap model
             , RedirectAttributes rttr
-            , BindingResult result) throws Exception {
+            ) throws Exception {
+
         logger.info("register post.....");
+
+        logger.error("title : {}", board.getTitle());
+        logger.debug("content : {}", board.getContent());
+        logger.info("writer : {}", board.getWriter());
 
         if (result.hasErrors()) {
             return "/board/register";
@@ -50,7 +55,7 @@ public class BoardController {
 
         service.regist(board);
 
-        model.addAttribute("result", "success");
+//        model.addAttribute("result", "success");
 
 //		return "/board/success";
         rttr.addFlashAttribute("msg", "success");

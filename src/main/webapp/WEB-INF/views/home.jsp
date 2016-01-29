@@ -5,15 +5,17 @@
 <%@include file="include/header.jsp" %>
 
 <section class="content">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="box">
-				<div class="box-header with-border">
-					<h3 class="box-title">HOME PAGE ... 야호 이대로 너무 힘드네요.. 이클립스가 미쳤나 봐용 </h3>
-				</div>
-			</div>
-		</div>	
-	</div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="list-group">
+                <a href="/board/register" class="list-group-item">
+                    등록
+                </a>
+                <a href="/board/listAll" class="list-group-item">목록</a>
+            </div>
+        </div>
+    </div>
 </section>
 
 <%@include file="include/footer.jsp" %>

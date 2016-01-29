@@ -10,7 +10,7 @@
 	<div class="col-md-12">
 		<div class="box">
 
-			<h4 style='margin-left: 10px;'>LIST ALL PAGE</h4>
+			<h4 style='margin-left: 10px;'>수정</h4>
 
 			<form role="form" method="post">
 
@@ -43,8 +43,8 @@
 			</form>
 
 			<div class="box-footer">
-				<button type="submit" class="btn btn-primary">SAVE</button>
-				<button type="submit" class="btn btn-warning">CANCEL</button>
+				<button type="submit" class="btn btn-primary">저장</button>
+				<button type="submit" class="btn btn-warning">취소</button>
 			</div>
 
 		</div>

@@ -36,7 +36,7 @@
       
       <header class="main-header">
         <!-- Logo -->
-        <a href="/resources/index2.html" class="logo">
+        <a href="/" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>A</b>LT</span>
           <!-- logo for regular state and mobile devices -->
@@ -456,12 +456,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Board Management
+            게시판 관리
             <small>Preview</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Forms</a></li>
-            <li class="active">General Elements</li>
+            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active"><a href="/board/listAll"> List</a></li>
           </ol>
         </section>
