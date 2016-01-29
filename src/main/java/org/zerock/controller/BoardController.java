@@ -19,6 +19,7 @@ import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageMaker;
 import org.zerock.service.BoardService;
+import sun.jvm.hotspot.debugger.Page;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -75,6 +76,13 @@ public class BoardController {
         model.addAttribute(service.read(bno));
     }
 
+    @RequestMapping(value = "/readPage", method = RequestMethod.GET)
+    public void readPage(@RequestParam("bno") int bno
+                         , @ModelAttribute("cri") Criteria cri
+            , ModelMap model) throws Exception {
+        model.addAttribute(service.read(bno));
+    }
+
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
     public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
         service.remove(bno);
@@ -114,7 +122,8 @@ public class BoardController {
         model.addAttribute("list", service.listCriteria(cri));
         PageMaker pageMaker = new PageMaker();
         pageMaker.setCri(cri);
-        pageMaker.setTotalCount(131);
+        //pageMaker.setTotalCount(131);
+        pageMaker.setTotalCount(service.listCountCriteria(cri));
 
         model.addAttribute("pageMaker", pageMaker);
     }

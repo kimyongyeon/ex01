@@ -2,6 +2,8 @@ package org.zerock.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 /**
  * Created by yongyeonkim on 2016. 1. 29..
@@ -18,6 +20,16 @@ public class PageMaker {
     private int displayPageNum = 10;
 
     private Criteria cri;
+
+    public String makeQuery(int page) {
+        UriComponents uriComponents = UriComponentsBuilder.newInstance()
+                .queryParam("page", page)
+                .queryParam("perPageNum", cri.getPerPageNum())
+                .build();
+
+        return uriComponents.toUriString();
+
+    }
 
     public void setCri(Criteria cri) {
         this.cri = cri;
