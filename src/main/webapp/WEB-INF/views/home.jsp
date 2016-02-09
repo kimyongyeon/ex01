@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="list-group">
                 <a href="/board/register" class="list-group-item">
-                    등록
+                    등록 시작
                 </a>
                 <a href="/board/listPage" class="list-group-item">목록</a>
             </div>
