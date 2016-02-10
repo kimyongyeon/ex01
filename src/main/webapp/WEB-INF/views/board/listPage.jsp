@@ -4,9 +4,23 @@
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%@include file="../include/header.jsp"%>
+<!-- Bootstrap 3.3.4 -->
+<link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- Font Awesome Icons -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<!-- Ionicons -->
+<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<!-- Theme style -->
+<link href="/resources/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<!-- AdminLTE Skins. Choose a skin from the css/skins
+folder instead of downloading all of them to reduce the load. -->
+<link href="/resources/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
 
-<div class="row"  style="padding:10px;">
+<script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+
+<h1>자유 게시판</h1>
+<h2 style="margin-bottom: 10px;">이곳은 자유롭게 이야기 하는곳입니다</h2>
+<div class="row"  style="padding:5px;">
     <div class="col-md-12">
         <div class="box">
             <table class="table table-bordered">
@@ -69,13 +83,34 @@
     }
 
     $(document).ready(function() {
+
         var formObj = $("form[role='form']");
         console.log(formObj);
+
         $("#btnWrite").on("click", function() {
             self.location = "/board/register";
         });
+
+        $('.pagination a').each(function() {
+            if ($(this).attr('href') != '#') {
+                var hrefURI = $(this).attr('href');
+                var params = hrefURI.substring(hrefURI.indexOf('?'));
+
+                $(this).click(function(event) {
+                    event.preventDefault();
+                    $.ajax({
+                        url: '/board/listPage' + params,
+                        type: 'get',
+                        dataType: 'html',
+                        success: function(data) {
+                            console.log("data", data);
+                            $('body').html(data);
+                        }
+                    });
+                });
+            }
+        });
+
     });
 
 </script>
-
-<%@include file="../include/footer.jsp"%>

@@ -1,10 +1,10 @@
 package org.zerock.controller;
 
+import javax.inject.Inject;
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cache.config.CacheManagementConfigUtils;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -19,10 +19,6 @@ import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageMaker;
 import org.zerock.service.BoardService;
-import sun.jvm.hotspot.debugger.Page;
-
-import javax.inject.Inject;
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/board")
@@ -45,10 +41,6 @@ public class BoardController {
             ) throws Exception {
 
         logger.info("register post.....");
-
-        logger.info("1.title : {}", board.getTitle());
-        logger.info("2.content : {}", board.getContent());
-        logger.info("3.writer : {}", board.getWriter());
 
         if (result.hasErrors()) {
             return "/board/register";
