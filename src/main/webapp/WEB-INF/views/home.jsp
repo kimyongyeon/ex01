@@ -6,6 +6,7 @@
 
 <velocity:view>
 
+<<<<<<< HEAD
     <section class="content">
 
         #if($status == "NORMAL")
@@ -50,8 +51,21 @@
                     <a href="/board/listPage" class="list-group-item">목록 화면 이동 </a>
                     <a href="/main" class="list-group-item">velocity 페이지 이동 </a>
                 </div>
+=======
+    <div class="row">
+        <div class="col-md-12">
+            <div class="list-group">
+                <a href="/board/register" class="list-group-item">
+                    등록 시작
+                </a>
+                <a href="/board/listPage" class="list-group-item">목록</a>
+>>>>>>> 24d28e5cda2e9b204ea9e4e6501e7b3f968c11bb
             </div>
         </div>
     </section>
 
+<<<<<<< HEAD
 </velocity:view>
+=======
+<%@include file="include/footer.jsp" %>
+>>>>>>> 24d28e5cda2e9b204ea9e4e6501e7b3f968c11bb
