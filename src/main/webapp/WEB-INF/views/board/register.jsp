@@ -1,30 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<%@include file="../include/header.jsp"%>
+<!-- Bootstrap 3.3.4 -->
+<link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-<style>
-    .error {
-        color: #ff0000;
-    }
+<script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 
-    .errorblock {
-        color: #000;
-        background-color: #ffEEEE;
-        border: 3px solid #ff0000;
-        padding: 8px;
-        margin: 16px;
-    }
-</style>
 
 <div class="row" style="padding: 10px;">
 	<div class="col-md-12">
 		<div class="box">
-            <form:form role="form" method="POST" commandName="commandNameBoard" action="register">
+
+            <form:form role="form" method="POST" commandName="commandNameBoard" action="register" id="frm">
+
                 <form:errors path="*" cssClass="errorblock" element="div" />
-				<div class="box-body">
+
+                <div class="box-body">
 					<div class="form-group">
 						<label for="title">Title</label>
                         <form:input path="title" cssClass="form-control"></form:input>
@@ -49,6 +44,24 @@
 							<%--name="writer" id="writer" class="form-control" placeholder="Enter Writer" />--%>
 					</div>
 
+                    <div class="form-group">
+                        프로그래머 <input type="checkbox"
+							name="job" id="job1" class="form-control" placeholder="Enter Writer" /> </br>
+                        퍼블리셔 <input type="checkbox"
+							name="job" id="job2" class="form-control" placeholder="Enter Writer" />
+					</div>
+
+                    <div class="form-group">
+                        남 <input type="radio"
+							name="sex" id="man" class="form-control" placeholder="Enter Writer" /> </br>
+                        여 <input type="radio"
+							name="sex" id="woman" class="form-control" placeholder="Enter Writer" />
+					</div>
+
+                    <div class="form-group">
+
+                    </div>
+
 				</div>
 
 			</form:form>
@@ -66,14 +79,18 @@
 
     $(document).ready(function() {
         var formObj = $("form[role='form']");
+        var frm = $("#frm");
         console.log(formObj);
         $("#btnCancel").on("click", function() {
-            self.location = "/board/listAll";
+            self.location = "/board/listPage";
         });
         $("#btnSave").on("click", function() {
+
+//            $("#title").val("편집술...");
+            console.log("formObj",frm.serialize());
             formObj.submit();
         });
+
+
     });
 </script>
-
-<%@include file="../include/footer.jsp"%>

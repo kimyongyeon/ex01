@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+    <!-- jsp파일을 조립하여 layoutAll.jsp에 연결하는 부분 -->
+    <definition name="default_layout" template="/WEB-INF/layouts/layouts-tiles.jsp" >
+        <put-attribute name="content" value="" />
+        <put-attribute name="header" value="/WEB-INF/layouts/header.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
+    </definition>
+
+
+    <!-- 개별 뷰 -->
+    <!--<definition name="/home" extends="default_layout">-->
+        <!--<put-attribute name="content" value="/WEB-INF/views/home.jsp" />-->
+    <!--</definition>-->
+
+    <!-- views 바로 아래에 있는 파일들을 찾는 wildcard -->
+    <definition name="/*" extends="default_layout">
+        <put-attribute name="content" value="/WEB-INF/views/{1}.jsp" />
+    </definition>
+
+    <!-- admin 폴더 안의 파일들을 찾는 wildcard -->
+    <definition name="/admin/*" extends="default_layout">
+        <put-attribute name="content" value="/WEB-INF/views/admin/{1}.jsp" />
+    </definition>
+
+    <!-- board 폴더 안의 파일들을 찾는 wildcard -->
+    <definition name="/board/*" extends="default_layout">
+        <put-attribute name="content" value="/WEB-INF/views/board/{1}.jsp" />
+    </definition>
+
+    <!-- view 아래의 폴더 안의 파일을 찾는 wildcard  -->
+    <definition name="/*/*" extends="default_layout">
+        <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+    </definition>
+
+</tiles-definitions>

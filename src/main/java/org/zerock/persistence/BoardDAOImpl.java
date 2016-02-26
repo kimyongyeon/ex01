@@ -11,10 +11,10 @@ import org.zerock.domain.Criteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
-	
+
 	@Inject
 	private SqlSession session;
-	
+
 	private static String namespace = "org.zerock.mapper.BoardMapper";
 
 	@Override
@@ -29,7 +29,12 @@ public class BoardDAOImpl implements BoardDAO {
 		return session.selectOne(namespace + ".read", bno);
 	}
 
-	@Override
+    @Override
+    public void viewUpdate(Integer bno) throws Exception {
+        session.update(namespace + ".viewUpdate", bno);
+    }
+
+    @Override
 	public void update(BoardVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		session.update(namespace + ".update", vo);

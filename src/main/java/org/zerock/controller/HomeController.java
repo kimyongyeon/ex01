@@ -14,16 +14,29 @@ import java.util.*;
  */
 @Controller
 public class HomeController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
+    @RequestMapping(value = "/test" , method = RequestMethod.GET)
+    public String ajaxText() {
+
+        logger.trace("This is TRACE Log!");
+        logger.debug("This is DEBUG Log!");
+        logger.info("This is INFO Log!");
+        logger.warn("This is WARN Log!");
+        logger.error("This is ERROR Log!");
+
+        return "/test";
+
+    }
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		
-		
+
+
 		logger.info("Welcome home! The client locale is {}.", locale);
 
         model.addAttribute("status", "NORMAL");
@@ -51,6 +64,13 @@ public class HomeController {
 		return "/home";
 	}
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(Locale locale, Model model) {
+        return "/login";
+    }
+
+
+
     /**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -76,7 +96,6 @@ public class HomeController {
             list.add(map);
         }
         model.addAttribute("list", list);
-
 
 		return "/main";
 	}

@@ -17,3 +17,15 @@ CREATE TABLE `tbl_member` (
   `updatedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table tbl_reply (
+  rno int NOT NULL AUTO_INCREMENT,
+  bno int NOT NULL default 0,
+  replytext varchar(1000) not null,
+  replayer varchar(50) not null,
+  regdate TIMESTAMP NOT NULL default now(),
+  updatedate timestamp not null default now(),
+  primary key(rno)
+);
+
+alter table tbl_reply add constraint fk_board FOREIGN KEY (bno) REFERENCES tbl_board (bno);

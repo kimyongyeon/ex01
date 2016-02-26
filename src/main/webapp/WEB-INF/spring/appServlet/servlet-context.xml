@@ -24,18 +24,18 @@
     <!--<beans:bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">-->
         <!--<beans:property name="resourceLoaderPath" value="/WEB-INF/velocity/"/>-->
     <!--</beans:bean>-->
-    <beans:bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <beans:property name="resourceLoaderPath" value="/WEB-INF/velocity/" />
-        <beans:property name="velocityProperties">
-            <beans:props>
-                <beans:prop key="input.encoding">UTF-8</beans:prop>
-                <beans:prop key="output.encoding">UTF-8</beans:prop>
-                <beans:prop key="velocimacro.library.autoreload">true</beans:prop>
-                <beans:prop key="file.resource.loader.cache">false</beans:prop>
-                <beans:prop key="file.resource.loader.modificationCheckInterval">10</beans:prop>
-            </beans:props>
-        </beans:property>
-    </beans:bean>
+    <!--<beans:bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">-->
+        <!--<beans:property name="resourceLoaderPath" value="/WEB-INF/velocity/" />-->
+        <!--<beans:property name="velocityProperties">-->
+            <!--<beans:props>-->
+                <!--<beans:prop key="input.encoding">UTF-8</beans:prop>-->
+                <!--<beans:prop key="output.encoding">UTF-8</beans:prop>-->
+                <!--<beans:prop key="velocimacro.library.autoreload">true</beans:prop>-->
+                <!--<beans:prop key="file.resource.loader.cache">false</beans:prop>-->
+                <!--<beans:prop key="file.resource.loader.modificationCheckInterval">10</beans:prop>-->
+            <!--</beans:props>-->
+        <!--</beans:property>-->
+    <!--</beans:bean>-->
 
     <!--
 
@@ -49,16 +49,16 @@
         <!--<beans:property name="contentType"><beans:value>text/html; charset=utf-8</beans:value></beans:property>-->
     <!--</beans:bean>-->
 
-    <beans:bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
-        <beans:property name="order" value="1" />
-        <beans:property name="cache" value="false"/>
-        <beans:property name="suffix" value=".vm"/>
-        <beans:property name="contentType" value="text/html; charset=UTF-8" />
-        <!-- if you want to use the Spring Velocity macros, set this property to true -->
-        <beans:property name="exposeSpringMacroHelpers" value="true"/>
-        <beans:property name="layoutUrl" value="/layout/layout.vm" />
-        <beans:property name="toolboxConfigLocation" value="/WEB-INF/velocity-toolbox.xml" />
-    </beans:bean>
+    <!--<beans:bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">-->
+        <!--<beans:property name="order" value="1" />-->
+        <!--<beans:property name="cache" value="false"/>-->
+        <!--<beans:property name="suffix" value=".vm"/>-->
+        <!--<beans:property name="contentType" value="text/html; charset=UTF-8" />-->
+        <!--&lt;!&ndash; if you want to use the Spring Velocity macros, set this property to true &ndash;&gt;-->
+        <!--<beans:property name="exposeSpringMacroHelpers" value="true"/>-->
+        <!--<beans:property name="layoutUrl" value="/layout/layout.vm" />-->
+        <!--<beans:property name="toolboxConfigLocation" value="/WEB-INF/velocity-toolbox.xml" />-->
+    <!--</beans:bean>-->
 
     <!--&lt;!&ndash; 프리마커 설정 &ndash;&gt;-->
     <!--<beans:bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
@@ -78,10 +78,30 @@
     <!--</beans:bean>-->
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+    <beans:bean id="tilesConfigurer"
+                class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <beans:property name="definitions">
+            <beans:list>
+                <beans:value>/WEB-INF/tiles.xml</beans:value>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+    <beans:bean id="tilesViewResolver"
+                class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <beans:property name="viewClass">
+            <beans:value>
+                org.springframework.web.servlet.view.tiles3.TilesView
+            </beans:value>
+        </beans:property>
+        <beans:property name="order" value="0"/>
+    </beans:bean>
+
+
+    <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
-        <beans:property name="order" value="2" />
+        <beans:property name="order" value="1" />
 	</beans:bean>
 
 	<context:component-scan base-package="org.zerock.controller" />

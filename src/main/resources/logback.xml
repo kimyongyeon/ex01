@@ -13,19 +13,19 @@
     </appender>
 
     <!-- Query Loggers -->
-    <logger name="org.apache.commons" level="warn" />
-    <logger name="org.springframework" level="warn" />
+    <logger name="org.apache.commons" level="info" />
+    <logger name="org.springframework" level="info" />
     <logger name="jdbc.sqlonly" level="info" />
 
-    <logger name="jdbc.connection" level="warn"  />
+    <logger name="jdbc.connection" level="info"  />
 
-    <logger name="jdbc.audit" level="warn"  />
+    <logger name="jdbc.audit" level="info"  />
 
-    <logger name="jdbc.sqlonly" level="warn"  />
+    <logger name="jdbc.sqlonly" level="info"  />
 
     <logger name="jdbc.sqltiming" level="info"  />
 
-    <logger name="jdbc.resultset" level="warn"  />
+    <logger name="jdbc.resultset" level="info"  />
 
     <logger name="jdbc.resultsettable" level="info"  />
 
@@ -35,3 +35,4 @@
     </root>
 
 </configuration>
+

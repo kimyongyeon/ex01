@@ -11,7 +11,7 @@ import org.zerock.persistence.BoardDAO;
 
 @Service
 public class BoardServiceImpl implements BoardService{
-	
+
 	@Inject
 	private BoardDAO dao;
 
@@ -24,6 +24,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public BoardVO read(Integer bno) throws Exception {
 		// TODO Auto-generated method stub
+        dao.viewUpdate(bno); // 보기 업데이트
 		return dao.read(bno);
 	}
 

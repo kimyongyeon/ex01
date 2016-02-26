@@ -30,9 +30,11 @@ public class BoardController {
     private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public void registerGET(@ModelAttribute("commandNameBoard") BoardVO board) throws Exception {
+    public String registerGET(@ModelAttribute("commandNameBoard") BoardVO board) throws Exception {
 
         logger.info("register get ....");
+
+        return "/board/register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -58,14 +60,17 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
-    public void listAll(Model model) throws Exception {
+    public String listAll(Model model) throws Exception {
         logger.info("show all list.....");
         model.addAttribute("list", service.listAll());
+
+        return "/board/listAll";
     }
 
     @RequestMapping(value = "/read", method = RequestMethod.GET)
-    public void read(@RequestParam("bno") int bno, ModelMap model) throws Exception {
+    public String read(@RequestParam("bno") int bno, ModelMap model) throws Exception {
         model.addAttribute(service.read(bno));
+        return "/board/read";
     }
 
     @RequestMapping(value = "/readPage", method = RequestMethod.GET)
@@ -79,7 +84,7 @@ public class BoardController {
     public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
         service.remove(bno);
         rttr.addFlashAttribute("msg", "success");
-        return "redirect:/board/listAll";
+        return "redirect:/board/listPage";
     }
 
     @RequestMapping(value = "/modify", method = RequestMethod.GET)
@@ -108,7 +113,7 @@ public class BoardController {
     }
 
     @RequestMapping(value = "listPage", method = RequestMethod.GET)
-    public void listPage(Criteria cri, Model model) throws Exception{
+    public String listPage(Criteria cri, Model model) throws Exception{
         logger.info(cri.toString());
 
         model.addAttribute("list", service.listCriteria(cri));
@@ -118,6 +123,8 @@ public class BoardController {
         pageMaker.setTotalCount(service.listCountCriteria(cri));
 
         model.addAttribute("pageMaker", pageMaker);
+
+        return "/board/listPage";
     }
 
 

@@ -1,8 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/layouts/common.jsp" %>
 
 <!-- Bootstrap 3.3.4 -->
 <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -18,27 +15,36 @@ folder instead of downloading all of them to reduce the load. -->
 
 <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 
-<h1>자유 게시판</h1>
-<h2 style="margin-bottom: 10px;">이곳은 자유롭게 이야기 하는곳입니다</h2>
 <div class="row"  style="padding:5px;">
+
+
+
     <div class="col-md-12">
         <div class="box">
             <table class="table table-bordered">
+
+                <form role="form" method="post">
+                    <input type="hidden" id="bno" name="bno" value="" />
+                </form>
+
                 <tr>
+                    <th style="width: 10px;"><input type="checkbox" name="chkAll"/></th>
                     <th style="width: 10px;">BNO</th>
                     <th>TITLE</th>
                     <th>WRITER</th>
                     <th>REGDATE</th>
+                    <th>DEL</th>
                     <th style="width: 40px;">VIEWCNT</th>
                 </tr>
                 <c:forEach items="${list}" var="boardVO">
                     <tr>
+                        <th><input type="checkbox" name="chk"/></th>
                         <td>${boardVO.bno}</td>
                         <%--<td><a href="/board/read?bno=${boardVO.bno}">${boardVO.title}</a></td>--%>
-                        <td><a href="/board/readPage${pageMaker.makeQuery(pageMaker.cri.page)}&bno=${boardVO.bno}">${boardVO.title}</a></td>
+                        <td><a href="/board/read${pageMaker.makeQuery(pageMaker.cri.page)}&bno=${boardVO.bno}"><c:out value="${boardVO.title}" default="제목없음..."/></a></td>
                         <td>${boardVO.writer}</td>
-                        <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
-                                            value="${boardVO.regdate}" /></td>
+                        <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"  value="${boardVO.regdate}" /></td>
+                        <td><button onclick="fnRemove('${boardVO.bno}');" data-rno="${boardVO.bno}" name="remove" class="form-control">삭제</button></td>
                         <td style="width: 40px;"><span class="badge bg-red">${boardVO.viewcnt}</span></td>
                     </tr>
                 </c:forEach>
@@ -76,10 +82,22 @@ folder instead of downloading all of them to reduce the load. -->
 
 
 <script>
+
     var result = '${msg}';
 
     if (result == 'success') {
         alert("처리가 완료 되었습니다.");
+    }
+
+    function fnRemove(bno) {
+
+        alert(bno + " 삭제 합니다.");
+
+        var formObj = $("form[role='form']");
+        $("#bno").val(bno);
+        formObj.attr("action", "/board/remove");
+        formObj.submit();
+
     }
 
     $(document).ready(function() {
@@ -91,25 +109,26 @@ folder instead of downloading all of them to reduce the load. -->
             self.location = "/board/register";
         });
 
-        $('.pagination a').each(function() {
-            if ($(this).attr('href') != '#') {
-                var hrefURI = $(this).attr('href');
-                var params = hrefURI.substring(hrefURI.indexOf('?'));
 
-                $(this).click(function(event) {
-                    event.preventDefault();
-                    $.ajax({
-                        url: '/board/listPage' + params,
-                        type: 'get',
-                        dataType: 'html',
-                        success: function(data) {
-                            console.log("data", data);
-                            $('body').html(data);
-                        }
-                    });
-                });
-            }
-        });
+//        $('.pagination a').each(function() {
+//            if ($(this).attr('href') != '#') {
+//                var hrefURI = $(this).attr('href');
+//                var params = hrefURI.substring(hrefURI.indexOf('?'));
+//
+//                $(this).click(function(event) {
+//                    event.preventDefault();
+//                    $.ajax({
+//                        url: '/board/listPage' + params,
+//                        type: 'get',
+//                        dataType: 'html',
+//                        success: function(data) {
+//                            console.log("data", data);
+//                            $('body').html(data);
+//                        }
+//                    });
+//                });
+//            }
+//        });
 
     });
 
